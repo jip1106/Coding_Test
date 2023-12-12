@@ -14,4 +14,28 @@ public class OtherExplan {
         return answer;
 
     }
+
+    //올바른 괄호
+    public boolean rightBracket(String s){
+        boolean answer = false;
+        int count = 0;
+        int len = s.length();
+
+        for(int i = 0; i<len;i++){
+            if(s.charAt(i) == '('){
+                count++;
+            }
+            if(s.charAt(i) == ')'){
+                count--;
+            }
+            if(count < 0){
+                break;
+            }
+        }
+        if(count == 0){
+            answer = true;
+        }
+
+        return answer;
+    }
 }

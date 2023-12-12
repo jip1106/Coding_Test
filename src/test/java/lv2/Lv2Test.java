@@ -59,4 +59,14 @@ class Lv2Test {
         assertThat(lv2.rightBracket("(()")).isFalse();
     }
 
+    @Test
+    public void numExpress(){
+        //assertThat(lv2.numExpress(15)).isEqualTo(4);
+        //assertThat(lv2.numExpress(6)).isEqualTo(2);
+        assertThat(lv2.numExpress(2)).isEqualTo(1);
+
+    }
+
+
+
 }
