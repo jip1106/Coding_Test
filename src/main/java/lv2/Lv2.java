@@ -1,7 +1,8 @@
 package lv2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lv2 {
     //최댓값과 최솟값
@@ -83,6 +84,48 @@ public class Lv2 {
 
         return base;
     }
+
+
+    //최솟값 만들기
+    public int makeMinVal(int []A, int []B){
+        int answer = 0;
+
+        Arrays.sort(A);
+        Arrays.sort(B);
+
+        for(int i=0; i<A.length; i++){
+            answer += A[i] * B[A.length - (i+1)];
+        }
+
+        return answer;
+    }
+
+    //올바른 괄호
+    public boolean rightBracket(String s){
+        boolean answer = true;
+        if(s.startsWith(")") || s.endsWith("(")){
+            return false;
+        }
+
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.push(s.charAt(i));
+            } else if (s.charAt(i) == ')') {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                stack.pop();
+            }
+        }
+
+        answer = stack.isEmpty();
+
+        return answer;
+
+
+    }
+
 
 
 
