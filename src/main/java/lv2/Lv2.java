@@ -365,6 +365,19 @@ public class Lv2 {
         return answer;
     }
 
+    /**
+     * 영어 끝말잇기
+     * @param n
+     * @param words
+     * @return
+     */
+
+    public int[] concludingRemarks(int n, String[] words) {
+        int[] answer = {0,0};
+
+        return answer;
+    }
+
 
 
 
