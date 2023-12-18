@@ -95,5 +95,20 @@ class Lv2Test {
         assertThat(lv2.cappet(10,2)[1]).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("concludingRemarks")
+    public void concludingRemarks() {
+        assertThat(lv2.concludingRemarks(3, new String[] {"tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"})[0]).isEqualTo(3);
+        assertThat(lv2.concludingRemarks(3, new String[] {"tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"})[1]).isEqualTo(3);
+
+        assertThat(lv2.concludingRemarks(5, new String[] {"hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"})[0]).isEqualTo(0);
+        assertThat(lv2.concludingRemarks(5, new String[] {"hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"})[1]).isEqualTo(0);
+
+        assertThat(lv2.concludingRemarks(2, new String[] {"hello", "one", "even", "never", "now", "world", "draw"})[0]).isEqualTo(1);
+        assertThat(lv2.concludingRemarks(2, new String[] {"hello", "one", "even", "never", "now", "world", "draw"})[1]).isEqualTo(3);
+
+
+    }
+
 
 }

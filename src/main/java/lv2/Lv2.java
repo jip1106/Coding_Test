@@ -368,13 +368,44 @@ public class Lv2 {
 
     /**
      * 영어 끝말잇기
-     * @param n
-     * @param words
-     * @return
+     * @param n     : 끝말잇기 참여 인원
+     * @param words : 말하는 단어
+     * @return 몇번째 사람이 , 몇번째 차례에 틀리는가?
      */
 
     public int[] concludingRemarks(int n, String[] words) {
         int[] answer = {0,0};
+
+        HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
+        int j=0;
+        for(int i=0; i<words.length; i++){
+            //말했던 글자를 말하는 경우
+            if(wordMap.containsKey(words[i])){
+                wordMap.put(words[i],i);
+                j=i+1;
+                break;
+            }
+
+            //끝말잇기 자체를 틀린 경우
+            if(i-1>=0){
+                if(!(words[i-1].endsWith(String.valueOf(words[i].charAt(0))))){
+                    wordMap.put(words[i],i);
+                    j=i+1;
+                    break;
+                }
+            }
+
+            wordMap.put(words[i],i);
+        }
+
+        if(wordMap.size() == words.length){
+            return answer;
+        }else{
+            System.out.println("j = " + j);
+            answer[0] = j%n == 0 ? (j%n) + n : (j%n);
+            answer[1] =(int) Math.ceil(j/(double)n);
+        }
+
 
         return answer;
     }
