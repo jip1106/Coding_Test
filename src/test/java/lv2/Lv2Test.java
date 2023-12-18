@@ -4,13 +4,14 @@ import lv0.Lv0;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pra.OtherExplan;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Lv2Test {
     Lv2 lv2 = new Lv2();
-
+    OtherExplan ohterExplan = new OtherExplan();
 
     @Test
     @DisplayName("LV2 - makeJadenCaseString")
@@ -64,9 +65,35 @@ class Lv2Test {
         //assertThat(lv2.numExpress(15)).isEqualTo(4);
         //assertThat(lv2.numExpress(6)).isEqualTo(2);
         assertThat(lv2.numExpress(2)).isEqualTo(1);
+        assertThat(ohterExplan.numExpress2(2)).isEqualTo(1);
 
     }
 
+    @Test
+    public void nextLargeNum() throws Exception {
+        assertThat(lv2.nextLargeNum(78)).isEqualTo(83);
+        assertThat(lv2.nextLargeNum(15)).isEqualTo(23);
+    }
+
+
+    @Test
+    public void removePair() throws Exception {
+        //assertThat(lv2.removePair("baabaa")).isEqualTo(1);
+        //assertThat(lv2.removePair("bcbc")).isEqualTo(0);
+
+        assertThat(lv2.removePair2("baabaa")).isEqualTo(1);
+        assertThat(lv2.removePair2("bcbc")).isEqualTo(0);
+
+        assertThat(lv2.removePair2("a")).isEqualTo(0);
+        assertThat(lv2.removePair2("aa")).isEqualTo(1);
+        assertThat(lv2.removePair2("aaa")).isEqualTo(0);
+    }
+
+    @Test
+    public void cappet() throws Exception {
+        assertThat(lv2.cappet(10,2)[0]).isEqualTo(4);
+        assertThat(lv2.cappet(10,2)[1]).isEqualTo(3);
+    }
 
 
 }
