@@ -106,8 +106,14 @@ class Lv2Test {
 
         assertThat(lv2.concludingRemarks(2, new String[] {"hello", "one", "even", "never", "now", "world", "draw"})[0]).isEqualTo(1);
         assertThat(lv2.concludingRemarks(2, new String[] {"hello", "one", "even", "never", "now", "world", "draw"})[1]).isEqualTo(3);
+    }
 
-
+    @Test
+    @DisplayName("jumpAndTeleportation")
+    public void jumpAndTeleportation() throws Exception {
+        assertThat(lv2.jumpAndTeleportation(5)).isEqualTo(2);
+        assertThat(lv2.jumpAndTeleportation(6)).isEqualTo(2);
+        assertThat(lv2.jumpAndTeleportation(5000)).isEqualTo(5);
     }
 
 
