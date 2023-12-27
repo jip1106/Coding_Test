@@ -472,8 +472,21 @@ public class Lv2 {
     public int lifeboat(int[] people, int limit){
         int answer = 0;
 
-
         Arrays.sort(people);
+
+        int minIdx = 0;
+        int maxIdx = people.length - 1;
+
+        while(maxIdx>=minIdx){
+            if(people[maxIdx] + people[minIdx]  <= limit){
+                answer++;
+                maxIdx--;
+                minIdx++;
+            }else{
+                answer++;
+                maxIdx--;
+            }
+        }
 
         return answer;
     }

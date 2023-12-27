@@ -1,5 +1,6 @@
 package lv2;
 
+import jdk.nashorn.internal.parser.JSONParser;
 import lv0.Lv0;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -115,6 +116,15 @@ class Lv2Test {
         assertThat(lv2.jumpAndTeleportation(6)).isEqualTo(2);
         assertThat(lv2.jumpAndTeleportation(5000)).isEqualTo(5);
     }
+    
+    @Test
+    @DisplayName("lifeboat")
+    public void lifeboat() throws Exception {
+        assertThat(lv2.lifeboat(new int[]{70, 50, 80, 50},100)).isEqualTo(3);
+        assertThat(lv2.lifeboat(new int[]{70, 50, 80},100)).isEqualTo(3);
+    }
+    
+
 
 
 }
