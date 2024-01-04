@@ -123,6 +123,13 @@ class Lv2Test {
         assertThat(lv2.lifeboat(new int[]{70, 50, 80, 50},100)).isEqualTo(3);
         assertThat(lv2.lifeboat(new int[]{70, 50, 80},100)).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("lcmN")
+    public void lcmN() throws Exception {
+        assertThat(lv2.lcmN(new int[]{2,6,8,14})).isEqualTo(168);
+        assertThat(lv2.lcmN(new int[]{1,2,3})).isEqualTo(6);
+    }
     
 
 
