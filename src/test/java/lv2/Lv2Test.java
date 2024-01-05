@@ -130,7 +130,40 @@ class Lv2Test {
         assertThat(lv2.lcmN(new int[]{2,6,8,14})).isEqualTo(168);
         assertThat(lv2.lcmN(new int[]{1,2,3})).isEqualTo(6);
     }
-    
+
+    @Test
+    @DisplayName("longJump")
+    public void longJump() throws Exception {
+        assertThat(lv2.longJump(3)).isEqualTo(3);
+        assertThat(lv2.longJump(4)).isEqualTo(5);
+        assertThat(lv2.longJump(5)).isEqualTo(8);
+        assertThat(lv2.longJump(6)).isEqualTo(13);
+
+    }
+
+    @Test
+    @DisplayName("rotationBracket")
+    public void rotationBracket() throws Exception {
+        assertThat(lv2.rotationBracket("[](){}")).isEqualTo(3);
+        assertThat(lv2.rotationBracket("}]()[{")).isEqualTo(2);
+        assertThat(lv2.rotationBracket("[)(]")).isEqualTo(0);
+        assertThat(lv2.rotationBracket("}}}")).isEqualTo(0);
+        assertThat(lv2.rotationBracket("()")).isEqualTo(1);
+
+
+
+    }
+
+
+    @Test
+    public void rightBracketV2() throws Exception {
+        assertThat(lv2.rightBracketV2("}]()[{")).isFalse();
+        assertThat(lv2.rightBracketV2("()[{}]")).isTrue();
+        assertThat(lv2.rightBracketV2("[{}]()")).isTrue();
+        assertThat(lv2.rightBracketV2(")[{}](")).isFalse();
+        assertThat(lv2.rightBracketV2("{}]()[")).isFalse();
+    }
+
 
 
 

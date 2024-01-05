@@ -550,6 +550,204 @@ public class Lv2 {
     }
 
 
+    /**
+     * 멀리뛰기
+     *
+     * 효진이는 한번에 1칸, 또는 2칸을 뛸 수 있습니다.
+     * 멀리뛰기에 사용될 칸의 수 n이 주어질 때,
+     * 효진이가 끝에 도달하는 방법이 몇 가지인지 알아내,
+     * 여기에 1234567를 나눈 나머지를 리턴하는 함수, solution을 완성하세요.
+     * 예를 들어 4가 입력된다면, 5를 return하면 됩니다.
+     *
+     * 제한 사항
+     * n은 1 이상, 2000 이하인 정수입니다.
+     */
+    public long longJump(int n){
+        long answer = 0;
+
+        //3,5,8,13 ... 피보나치
+        long[] dp = new long[n+2];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for(int i=3; i<=n ;i++){
+            dp[i] = ( dp[i-1] + dp[i-2] ) % 1234567;
+        }
+        answer = dp[n];
+
+        return answer;
+    }
+
+    /**
+     * 귤고르기
+     * 확한 귤 중 'k'개를 골라 상자 하나에 담아 판매
+     * 경화가 수확한 귤 8개의 크기가 [1, 3, 2, 5, 4, 5, 2, 3] 이라고 합시다. 경화가 귤 6개를 판매하고 싶다면,
+     * 크기가 1, 4인 귤을 제외한 여섯 개의 귤을 상자에 담으면, 귤의 크기의 종류가 2, 3, 5로 총 3가지가 되며 이때가 서로 다른 종류가 최소일 때임
+     * 한 상자에 담으려는 귤의 개수 k와 귤의 크기를 담은 배열 tangerine이 매개변수로 주어집니다
+     * 귤 k개를 고를 때 크기가 서로 다른 종류의 수의 최솟값을 return
+     * @param k
+     * @param tangerine
+     * @return
+     */
+    public int chooseMandarin(int k, int[] tangerine){
+        int answer = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for(int i=0; i<tangerine.length; i++){
+            map.put(tangerine[i], map.getOrDefault(tangerine[i],0) + 1);
+        }
+
+        ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+
+        //값 기준 내림차순 정렬
+        keys.sort( (tmp1, tmp2) -> map.get(tmp2) - map.get(tmp1) );
+
+        int i=0;
+        while(k > 0){
+            k -= map.get(keys.get(i));
+            answer ++;
+            i++;
+        }
+
+        return answer;
+    }
+
+    /**
+     * 연속 부분 수열 합의 개수
+     */
+    public int continuitySequence(int[] elements) {
+        int answer = 0;
+
+        Set<Integer> set = new HashSet<>();
+
+        int start = 1;
+        while (start <= elements.length) {
+            for (int i = 0; i < elements.length; i++) {
+                int value = 0;
+                for (int j = i; j < i + start; j++) {
+                    value += elements[j % elements.length];
+                }
+                set.add(value);
+            }
+            start++;
+        }
+
+        answer = set.size();
+
+        return answer;
+    }
+
+    /**
+     * 괄호 회전하기
+     */
+
+    public int rotationBracket(String s){
+        int answer = 0;
+
+        //올바른 괄호가 맞는지 확인
+        int len = s.length();
+        //System.out.println("s = " + s);
+
+        for(int i=0; i<len; i++){
+            s = s.substring(1) + s.charAt(0);
+            //System.out.println("s = " + s);
+            answer = rightBracketV2(s) ? answer + 1 : answer;
+        }
+
+        return answer;
+    }
+
+    public boolean rightBracketV2(String s){
+        boolean rtnVal = false;
+        ArrayList<Character> startBracket = new ArrayList<>(Arrays.asList('(','{','['));
+        ArrayList<Character> endBracket = new ArrayList<>(Arrays.asList(')','}',']'));
+
+        if(endBracket.contains(s.charAt(0))){
+            return rtnVal;
+        }
+
+        Stack<Character> stack = new Stack<>();
+        int len = s.length();
+
+        // [] () {}
+        for(int i=0; i<len;i++){
+            char val = s.charAt(i);
+
+            if(stack.empty()){
+                stack.push(val);
+            }else{
+                char peekVal = stack.peek();
+
+                if(startBracket.contains(val)){
+                    stack.push(val);
+                }
+
+                if(peekVal == '{' && val == '}') stack.pop();
+                if(peekVal == '[' && val == ']') stack.pop();
+                if(peekVal == '(' && val == ')') stack.pop();
+
+                if(endBracket.contains(peekVal)){
+                    rtnVal = false;
+                    break;
+                }
+            }
+
+
+        }
+
+        rtnVal = stack.empty();
+
+        return rtnVal;
+    }
+
+
+    /**
+     * 할인행사
+     *  일정한 금액을 지불하면 10일 동안 회원 자격을 부여
+     *  회원을 대상으로 매일 한 가지 제품을 할인하는 행사, 할인하는 제품은 하루에 하나씩만 구매
+     *  자신이 원하는 제품과 수량이 할인하는 날짜와 10일 연속으로 일치할 경우에 맞춰서 회원가입
+     *   원하는 제품이 바나나 3개, 사과 2개, 쌀 2개, 돼지고기 2개, 냄비 1개이며
+     *   15일간 회원을 대상으로 할인하는 제품이 날짜 순서대로
+     *   치킨, 사과, 사과, 바나나, 쌀, 사과, 돼지고기, 바나나, 돼지고기, 쌀, 냄비, 바나나, 사과, 바나나인 경우
+     *   첫째 날부터 열흘 간에는 냄비가 할인하지 않기 때문에 첫째 날에는 회원가입을 하지 않습니다.
+     *   둘째 날부터 열흘 간에는 바나나를 원하는 만큼 할인구매할 수 없기 때문에 둘째 날에도 회원가입을 하지 않습니다.
+     *   셋째 날, 넷째 날, 다섯째 날부터 각각 열흘은 원하는 제품과 수량이 일치하기 때문에 셋 중 하루에 회원가입
+     *
+     * */
+    public int discountEvent(String[] want, int[] number, String[] discount){
+        int answer = 0;
+        int discountDay = 10;
+
+        HashMap<String, Integer> map = new HashMap<>();
+        for(int i=0; i<number.length; i++){
+            map.put(want[i], number[i]);
+        }
+
+        for(int i=0; i<=discount.length - discountDay;i++){
+
+            Map<String, Integer> dMap = new HashMap<>();
+
+            for(int j = 0; j < discountDay; j++){
+                dMap.put(discount[i + j], dMap.getOrDefault(discount[i + j], 0) + 1);
+            }
+
+            boolean chk = true;
+
+            for(String key : map.keySet()){
+                if(!map.get(key).equals(dMap.get(key)) ){
+                    chk = false;
+                    break;
+                }
+            }
+
+            answer += chk ? 1 : 0;
+
+        }
+
+        return answer;
+    }
+
 
 
 
