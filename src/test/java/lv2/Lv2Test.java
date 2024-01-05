@@ -1,14 +1,10 @@
 package lv2;
 
-import jdk.nashorn.internal.parser.JSONParser;
-import lv0.Lv0;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pra.OtherExplan;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Lv2Test {
     Lv2 lv2 = new Lv2();
@@ -150,10 +146,7 @@ class Lv2Test {
         assertThat(lv2.rotationBracket("}}}")).isEqualTo(0);
         assertThat(lv2.rotationBracket("()")).isEqualTo(1);
 
-
-
     }
-
 
     @Test
     public void rightBracketV2() throws Exception {
@@ -162,6 +155,20 @@ class Lv2Test {
         assertThat(lv2.rightBracketV2("[{}]()")).isTrue();
         assertThat(lv2.rightBracketV2(")[{}](")).isFalse();
         assertThat(lv2.rightBracketV2("{}]()[")).isFalse();
+    }
+
+    @Test
+    public void discountEvent() throws Exception {
+        assertThat(lv2.discountEvent(
+                new String[]{"banana", "apple", "rice", "pork", "pot"} ,
+                new int[]{3, 2, 2, 2, 1},
+                new String[]{"chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"})).isEqualTo(3);
+    }
+
+    @Test
+    public void splitArr() throws Exception {
+        assertThat(lv2.splitArr(3,2,5)).contains(3,2,2,3);
+        assertThat(lv2.splitArr(4,7,14)).contains(4,3,3,3,4,4,4,4);
     }
 
 
