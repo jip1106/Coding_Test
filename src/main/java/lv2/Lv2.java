@@ -776,6 +776,54 @@ public class Lv2 {
         return answer;
     }
 
+    /**
+     * 어떤 과학자가 발표한 논문 n편 중,
+     * h번 이상 인용된 논문이 h편 이상 이고 나머지 논문이
+     * h번 이하 인용 되었다면 h의 최댓값이 이 과학자의 H-Index입니다.
+     *
+     * 어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상일 때의 h값과 그 때, h번 이상 인용된 논문의 개수 중 최대값을 리턴한다.
+     * @param citations
+     * @return
+     */
+    public int hIndex(int[] citations){
+        int answer = 0;
+
+        Arrays.sort(citations);
+        for (int i = 0; i < citations.length; i++) {
+            int h = citations.length - i;
+            if (citations[i] >= h) {
+                answer = h;
+                break;
+            }
+        }
+
+        return answer;
+    }
+
+    public int [][] matrixMultiply(int[][] arr1, int[][] arr2){
+        int arr1R = arr1.length;
+        int arr1C = arr1[0].length;
+
+        int arr2R = arr1C;
+        int arr2C = arr2[0].length;
+
+        int[][] answer = new int[arr1R][arr2C];
+
+        for(int r=0;r<arr1R;r++){
+
+            for(int c=0;c<arr2C;c++){
+                int sum = 0;
+
+                for(int k=0;k<arr1C;k++){
+                    sum += arr1[r][k]*arr2[k][c];
+                }
+                answer[r][c] = sum;
+            }
+        }
+
+        return answer;
+    }
+
 
 
 
