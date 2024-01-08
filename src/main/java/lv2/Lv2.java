@@ -824,6 +824,25 @@ public class Lv2 {
         return answer;
     }
 
+    public int clothes(String[][] clothes){
+        int answer = 1;
+
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for (String[] clothe : clothes) {
+            map.put(clothe[1], map.getOrDefault(clothe[1], 0) + 1);
+        }
+
+        for (String[] clothe : clothes) {
+            answer *= (map.get(clothe[1]) + 1);
+            map.put(clothe[1], 0);
+        }
+
+
+        return answer - 1;
+
+    }
+
 
 
 

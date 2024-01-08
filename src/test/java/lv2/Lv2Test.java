@@ -1,5 +1,6 @@
 package lv2;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pra.OtherExplan;
@@ -169,6 +170,53 @@ class Lv2Test {
     public void splitArr() throws Exception {
         assertThat(lv2.splitArr(3,2,5)).contains(3,2,2,3);
         assertThat(lv2.splitArr(4,7,14)).contains(4,3,3,3,4,4,4,4);
+    }
+
+    @Test
+    public void clothes() throws Exception {
+        /*
+        String [][] arr = {
+                {"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}
+        };
+        assertThat(lv2.clothes(arr)).isEqualTo(5);
+
+        String [][] arr2 = {
+                {"crow_mask", "face"}, {"blue_sunglasses", "face"}, {"smoky_makeup", "face"}
+        };
+        assertThat(lv2.clothes(arr2)).isEqualTo(3);
+
+
+        String [][] arr3 = {
+                {"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}, {"yellow_hat", "headgear2"}, {"yellow_hat", "headgear2"}
+        };
+
+        assertThat(lv2.clothes(arr3)).isEqualTo(13);
+
+
+        String [][] arr4 = {
+            {"a","aa"},
+            {"b","aa"},
+            {"c","aa"},
+            {"aa","bb"},
+            {"bb","bb"},
+            {"c_c","bb"},
+            {"aaa","cc"},
+            {"bbb","cc"},
+            {"ccc","cc"}
+        };
+
+        assertThat(lv2.clothes(arr4)).isEqualTo(63);
+
+        */
+
+        String [][] arr5 = {
+                {"a","a"},
+                {"b","b"},
+                {"c","c"}
+        };
+
+        assertThat(lv2.clothes(arr5)).isEqualTo(7);
+
     }
 
 
