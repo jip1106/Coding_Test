@@ -1,5 +1,6 @@
 package pra;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 class BasicTest {
     @Test
     public void stringSplitMethod() throws Exception {
@@ -39,6 +41,21 @@ class BasicTest {
         for (Integer i : integerArr) {
             System.out.println("Integer Type = " + i);
         }
+    }
+
+    @Test
+    public void testUrl() throws Exception {
+        String realUrl = "t-mweb.zzzmobile.co.kr";
+
+        if(realUrl.contains("t-mweb")){
+            log.info("실행1");
+        }else if(realUrl.contains("mweb")){
+            log.info("실행2");
+        }
+    }
+
+    @Test
+    public void testdivide() throws Exception {
 
     }
 

@@ -4,6 +4,7 @@ package lv0;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import pra.MyValidPassword;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -97,6 +98,33 @@ public class LV0Test {
         for (int i : ints1) {
             System.out.println("i = " + i);
         }
+    }
+    
+    
+    @Test
+    public void passwordTest() throws Exception {
+        System.out.println("MyValidPassword.isValidPassword(\"csh0325!\") = " + MyValidPassword.isValidPassword("csh0325!"));
+
+        assertThat(MyValidPassword.isValidPassword("84232005wnsdlF!")).isEqualTo("AP");
+        assertThat(MyValidPassword.isValidPassword("abc!")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("cba!")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("bca!")).isEqualTo("AP");
+        assertThat(MyValidPassword.isValidPassword("xyz!")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("zyx!")).isEqualTo("CP");
+
+        assertThat(MyValidPassword.isValidPassword("csh0325!")).isEqualTo("AP");
+        assertThat(MyValidPassword.isValidPassword("opqrstu")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("opq")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("stu")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("tu")).isEqualTo("AP");
+        assertThat(MyValidPassword.isValidPassword("tuut")).isEqualTo("AP");
+
+
+
+
+
+
+
     }
 
 
