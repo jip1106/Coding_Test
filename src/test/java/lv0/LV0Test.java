@@ -120,9 +120,17 @@ public class LV0Test {
         assertThat(MyValidPassword.isValidPassword("tuut")).isEqualTo("AP");
 
 
+        assertThat(MyValidPassword.isValidPassword("123")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("321")).isEqualTo("CP");
 
+        assertThat(MyValidPassword.isValidPassword("321")).isEqualTo("CP");
 
+        //abcdefg hijklmn opqrstu vwxyz
+        assertThat(MyValidPassword.isValidPassword("xyz")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("zyx")).isEqualTo("CP");
+        assertThat(MyValidPassword.isValidPassword("zab")).isEqualTo("AP");
 
+        assertThat(MyValidPassword.isValidPassword("zyk!")).isEqualTo("AP");
 
 
     }
